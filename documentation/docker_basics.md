@@ -48,6 +48,7 @@ For running an image in a container, use `docker run <img:tag>`. If Docker doesn
 | ---------------------------- | ------------------------------------------------------------ |
 | `docker build`               | Create a image from the *Dockerfile* at PWD, with `-f` can use another file |
 | `docker run <img:tag>`       | Runs a new container with the image *img* and the specified *tag* |
+| `docker run -it <img:tag>`   | Runs a new container interative |
 | `docker exec <id> <cmd>`     | Execute a command in a running container                     |
 | `docker exec -it <id> <cmd>` | Execute the command interactive & with a pseudo-tty (open a shell) |
 
