@@ -92,10 +92,21 @@ All the container-related command can be access using `docker container <cmd>`co
 So far, we can run containers and manage with the commands above but there are more things about running the containers.
 
 
-
 ## Container volumes
 
+![image](https://github.com/correalramos24/Docker/assets/17430554/a177dd33-3e67-44fb-9ee4-9e198ddde578)
 
+This is the unique way to share files between the container & the host and to add data persistence to a container (remember, the containers can be discarded). You can also copy data from/back a container but is considered a bad practice (again because the container can be discarded at any moment).
+
+To use volumes in a container, is required to specify the volume on the container creation (`docker exec`), using either `-v` or `--volume` with the following syntax:
+````bash
+-v, --volume=[absolute-host-src/volume_name:]container-dest[:<options>]
+````
+> You can directly mount a directory, using an absolute path
+> The options define the permission (rw,ro).
+> With `docker volume create <vol_name>` the docker engine creates an empty volume
+> If a volume name isn't defined, the docker engine generates a new volume
+> The volumes are stored at `/var/lib/docker/volumes/` on Linux.
 
 ## Container networking
 
