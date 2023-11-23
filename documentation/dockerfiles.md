@@ -1,11 +1,10 @@
 # Dockerfiles
 
+Boilerplate to generate docker images, consists in a sequence of *commands* that adds layers to a parent image.
+
 - [Dockerfiles](#dockerfiles)
   - [Dockerfiles commands](#dockerfiles-commands)
   - [Image generation (docker build)](#image-generation-docker-build)
-
-
-Boilerplate to generate docker images, consists in a sequence of *commands* that adds layers to a parent image.
 
 > Is a good practice to use a pre-designed image from a registry (docker hub for example).
 
@@ -21,4 +20,7 @@ Boilerplate to generate docker images, consists in a sequence of *commands* that
 ## Image generation (docker build)
 
 
-For add a tag to the image, you can use `docker build -t tag .`. Otherwise ...
+For add a tag to the image, you should use `docker build -t tag`
+
+Docker images are build layer by layer (line by line on the Dockerfile). The builder may cache previous layers.
+

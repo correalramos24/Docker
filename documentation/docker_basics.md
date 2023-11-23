@@ -1,14 +1,17 @@
 # Docker
+
 - [Docker](#docker)
   - [Introduction](#introduction)
   - [Docker installation](#docker-installation)
-  - [Images and containers](#images-and-containers)
+  - [Images and containers basics](#images-and-containers-basics)
     - [Images useful commands](#images-useful-commands)
     - [Containers useful commands](#containers-useful-commands)
   - [More on running containers](#more-on-running-containers)
-  - [Container volumes](#container-volumes)
+    - [docker run options](#docker-run-options)
+    - [Container volumes](#container-volumes)
   - [Container networking](#container-networking)
   - [Multi-containers architecture](#multi-containers-architecture)
+
 
 ## Introduction
 * Docker allows to use always the same environment (sandbox)
@@ -16,6 +19,7 @@
   * A container with a Linux app, can only run with a linux kernel
 * Docker runs an application image within a container in the host.
 * A docker container needs to be *removable*, in other words the important data needs to be saved outside (with a volume).
+* At execution time, you can ask with tab key for auto-complete the commands (or display the possible commands)
 
 ## Docker installation
 
@@ -28,7 +32,7 @@ sudo usermod -aG docker $USER
 #logout and login
 ```
 
-## Images and containers
+## Images and containers basics
 
 Docker runs a container using an image, that can be obtained in two ways:
 1. From a *Dockerfile*: A text file where you can custom your image with `docker build`.
@@ -40,15 +44,15 @@ Docker runs a container using an image, that can be obtained in two ways:
 
 For running an image in a container, use `docker run <img:tag>`. If Docker doesn't find the image locally, it will pull the image from the registry. 
 
->Some insights of the containers
->* All the containers have an unique container id and a unique name.
+>Some insights of the containers:
+>* All the containers have an unique container id  (hash value) and a unique name. You can execute commands either using the id or the unique name.
 >* The stdout is converted automatically by Docker into the container log.
 
 | Command                      | Explanation                                                  |
 | ---------------------------- | ------------------------------------------------------------ |
 | `docker build`               | Create a image from the *Dockerfile* at PWD, with `-f` can use another file |
 | `docker run <img:tag>`       | Runs a new container with the image *img* and the specified *tag* |
-| `docker run -it <img:tag>`   | Runs a new container interative |
+| `docker run -it <img:tag>`   | Runs a new container interactive                             |
 | `docker exec <id> <cmd>`     | Execute a command in a running container                     |
 | `docker exec -it <id> <cmd>` | Execute the command interactive & with a pseudo-tty (open a shell) |
 
@@ -66,6 +70,8 @@ The images can be build and managed (removed, tagged, etc) via different command
 | `docker prune`                           | Remove unused images                                         |
 | `docker rmi <img:tag> [img:tag]`         | Remove one or more images (can't be used by a container). Alias for `docker image rm` |
 
+Commands for one specific image are within `docker image ...` and the commands for all the images on the host is `docker images ...`.
+
 ### Containers useful commands
 
 All the container-related command can be access using `docker container <cmd>`command line. There are some alias also for skip write container. The most useful:
@@ -76,8 +82,8 @@ All the container-related command can be access using `docker container <cmd>`co
 | `docker container ls`          | Same as `docker ps`                                          |
 | `docker stop <id> [<id> ...]`  | Stop one or more containers (Sends *SIGTERM*)                |
 | `docker start <id> [<id> ...]` | Re-start one or more container                               |
-| `docker pause <id> [<id> ...]` | Pause one or more containers (Sends SIGSTOP)                 |
-| `docker unpause <id> [<id>..]` | (Sends SINGCONT)                                             |
+| `docker pause <id> [<id> ...]` | Pause one or more containers (Sends *SIGSTOP*)               |
+| `docker unpause <id> [<id>..]` | (Sends *SINGCONT*)                                           |
 | `docker kill <id> [<id> ...]`  | Kill one or more containers (Sends *SIGKILL*)                |
 | `docker logs <id>`             | See the logs from a container. With -f the output is appended |
 | `docker container prune`       | Remove all stopped container                                 |
@@ -91,8 +97,10 @@ All the container-related command can be access using `docker container <cmd>`co
 
 So far, we can run containers and manage with the commands above but there are more things about running the containers.
 
+### docker run options
+!TODO
 
-## Container volumes
+### Container volumes
 
 ![image](https://github.com/correalramos24/Docker/assets/17430554/a177dd33-3e67-44fb-9ee4-9e198ddde578)
 
