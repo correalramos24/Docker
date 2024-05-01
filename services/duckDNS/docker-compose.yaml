@@ -1,0 +1,20 @@
+---
+version: "2"
+services:
+  duckdns:
+    image: linuxserver/duckdns
+    container_name: duckdns
+    environment:
+      - PUID=1000 #optional
+      - PGID=1000 #optional
+      - TZ=Europe/London
+      - SUBDOMAINS=vcorreal
+      - TOKEN=/run/secrets/duck_token
+      - LOG_FILE=true #optional
+    restart: always
+    secrets:
+      - duck_token
+
+secrets:
+  duck_token:
+    file: ./duck_token.txt

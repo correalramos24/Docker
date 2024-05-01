@@ -1,0 +1,29 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: /run/secrets/db_pg_password
+      POSTGRES_USER: /run/secrets/db_pg_user
+      PGDATA: /var/lib/postgresql/dbData
+    volumes:
+      - /db_data:/var/lib/postgresql/dbData
+    secrets:
+      - db_pg_password
+      - db_pg_user
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+secrets:
+  db_pg_password:
+    file: db_pass.txt
+  db_pg_user:
+    file: db_user.txt
